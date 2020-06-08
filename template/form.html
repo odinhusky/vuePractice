@@ -109,42 +109,72 @@
 </div>
 
 <div id="app">
+
   <h4>Select</h4>
-  <select name="" id="" class="form-control" v-model="selected">
+  <select name="" id="" class="form-control" 
+    v-model="selected"
+  >
     <option disabled value="">請選擇</option>
     <option value="小美">小美</option>
     <option value="可愛小妞">可愛小妞</option>
     <option value="漂亮阿姨">漂亮阿姨</option>
   </select>
   <p>小明喜歡的女生是 {{ selected }}。</p>
+
   <hr>
-  <select name="" id="" class="form-control" v-model="selected2">
+
+  <select name="" id="" class="form-control" 
+    v-model="selected2"
+  >
     <option disabled value="">請選擇</option>
+    <option 
+      v-for="item in selectData" 
+      :value="item"
+    >
+      {{ item }}
+    </option>
+
   </select>
   <p>小明喜歡的女生是 {{ selected2 }}。</p>
+
   <hr>
+
   <h4 class="mt-3">多選</h4>
-  <select name="" id="" class="form-control" v-model="multiSelected">
+  <select name="" id="" class="form-control" multiple v-model="multiSelected">
     <option value="小美">小美</option>
     <option value="可愛小妞">可愛小妞</option>
     <option value="漂亮阿姨">漂亮阿姨</option>
   </select>
   <p>小明喜歡的女生是 <span v-for="item in multiSelected">{{ item }} </span>。</p>
+
   <hr>
+
   <h4 class="mt-3">複選框</h4>
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="sex" v-model="sex">
+    <input type="checkbox" class="form-check-input" id="sex" 
+      v-model="sex"
+      true-value="男生"
+      false-value="女生"
+    >
     <label class="form-check-label" for="sex">{{ sex }}</label>
   </div>
+
   <h4 class="mt-3">修飾符</h4>
+  <!-- lazy:當 unfocus 或是 unchange 的時候才呈現資料 -->
   {{ lazyMsg }}
-  <input type="text" class="form-control" v-model="lazyMsg">
+  <input type="text" class="form-control" 
+    v-model.lazy="lazyMsg">
   <br>
+  <!--number:轉換為數字型別的資料 -->
+  <pre>{{ typeof(age) }}</pre>
   <pre>{{ age }}</pre>
-  <input type="number" class="form-control" v-model="age">
+  <input type="number" class="form-control" 
+    v-model.number="age">
   <br>
+  <!-- trim:修飾掉多餘的空白 -->
   {{ trimMsg }}緊黏的文字
-  <input type="text" class="form-control" v-model="trimMsg">
+  <input type="text" class="form-control" 
+    v-model.trim="trimMsg">
 </div>
 
 <script>

@@ -109,21 +109,36 @@
 </div>
 
 <div id="app">
+
   <h4>Computed</h4>
+  <!-- 如果資料量大的話，效能上的負擔會比較大! -->
   <p>使用 Computed 來過濾資料。</p>
-  <input type="text" class="form-control" v-model="filterText">
+  <input type="text" class="form-control" 
+    v-model="filterText"
+  >
+
   <ul>
-    <li v-for="(item, key) in arrayData" :key="item.age">
+    <li v-for="(item, key) in filterdArr" :key="item.age">
       {{ key }} - {{ item.name }} {{ item.age }} 歲 <input type="text">
     </li>
-  </ul> 
+  </ul>
+
   <p>使用 Computed 來呈現時間格式。</p>
-  <p></p>
+  <p>TimeStamp:{{ newDate }}</p>
+  <p>Computed 過後:{{ formatTime }}</p>
+
   <h4>Watch</h4>
   <p>使用 trigger 來觸發旋轉 box、並在三秒後改變回來</p>
   <div class="box" :class="{'rotate': trigger }"></div>
+
   <hr>
-  <button class="btn btn-outline-primary">Counter</button>
+
+  <button class="btn btn-outline-primary"
+    @click="trigger = true"
+  >
+    Counter
+  </button>
+
 </div>
 
 <script>
@@ -148,6 +163,41 @@ var app = new Vue({
     trigger: false,
     newDate: 0
   },
+  computed: {
+    filterdArr: function () {
+      var vm = this;
+
+      return vm.arrayData.filter(function (item, index, arr) {
+        return item.name.match(vm.filterText);
+      });
+    },
+    // 將 TimeStamp 轉換成 YYYY-MM-DD
+    formatTime: function () {
+      console.log(this.newDate);
+      var dates = new Date(this.newDate * 1000);
+      var year = dates.getFullYear();
+      var month = dates.getMonth() + 1;
+      var date = dates.getDate();
+      var hours = dates.getHours();
+      var minutes = dates.getMinutes();
+      var seconds = dates.getSeconds();
+      return `${year}/${month}/${date} ${hours}:${minutes}:${seconds}`
+    },
+  },
+  // 監控特定的變數
+  watch: {
+    // 前面是宣告的變數名稱，一有變化就會執行 function 的內容
+    trigger: function () {
+      var vm = this;
+      setTimeout(() => {
+        vm.trigger = false;
+      }, 2000);
+    }
+  },
+  // 在運算出來的時候就執行的生命週期
+  mounted: function () {
+    this.newDate = Math.floor(Date.now() / 1000);
+  }
 
   // 解答
   // methods: {
