@@ -128,16 +128,33 @@
     <thead>
     </thead>
     <tbody>
-      <tr v-for="(item, key) in data" :item="item" :key="key">
-        <td>{{ item.name }}</td>
-        <td>{{ item.cash }}</td>
-        <td>{{ item.icash }}</td>
+      <tr 
+        v-for="(item, key) in data" 
+        :prop="item" 
+        :key="key"
+        is="TrComponent"
+      >
+
       </tr>
     </tbody>
   </table>
 </div>
 
+<script type="text/x-template" id="TrComponentID">
+  <tr>
+    <td>{{ prop.name }}</td>
+    <td>{{ prop.cash }}</td>
+    <td>{{ prop.icash }}</td>
+  </tr>
+</script>
+
 <script>
+// 共用的 Component
+// Vue.component('TrComponent', {
+//   props: ['prop'],
+//   template: '#TrComponentID'
+// });
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -163,6 +180,13 @@ var app = new Vue({
         icash: 100,
       },
     ]
+  },
+  // 定義特定的 component，非共用
+  components: {
+    TrComponent: {
+      props: ['prop'],
+      template: '#TrComponentID'
+    },
   }
 });
 </script>

@@ -208,7 +208,7 @@
         <!-- 編輯的 input -->
         <input 
           type="text" 
-          class="form-control"
+          class="form-control todo"
           @keyup.enter="doneTodo(item)"
           @keyup.esc="cancelEdit()"
           v-model="cacheTitle"
@@ -291,6 +291,10 @@ var app = new Vue({
     editTodo: function (item) {
       this.cacheTitle = item.title;
       this.cacheTodo = item;
+      setTimeout(function () {
+        console.log('dbclick');
+        document.querySelector('.todo').focus();
+      }, 0)
       console.log(this, this.activenode);
     },
     // 完成編輯
