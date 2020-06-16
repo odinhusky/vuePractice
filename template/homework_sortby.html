@@ -27,19 +27,19 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/basic/dev.html">基礎教學</a>
+          <a class="nav-link" href="../basic/dev.html">基礎教學</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/template/basic.html">模板指令</a>
+          <a class="nav-link" href="../template/basic.html">模板指令</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/components/basic.html">組件</a>
+          <a class="nav-link" href="../components/basic.html">組件</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/api/vue_set.html">常用 API</a>
+          <a class="nav-link" href="../api/vue_set.html">常用 API</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/es6/let_const.html">ES6</a>
+          <a class="nav-link" href="../es6/let_const.html">ES6</a>
         </li>
 
       </ul>
@@ -54,49 +54,49 @@
           <h6 class="text-capitalize text-muted">template</h6>
 
 
-          <a href="/template/basic.html" class="btn btn-block btn-link">
+          <a href="../template/basic.html" class="btn btn-block btn-primary active">
             基礎模板語法
           </a>
 
 
 
-          <a href="/template/v_class.html" class="btn btn-block btn-link">
+          <a href="../template/v_class.html" class="btn btn-block btn-link">
             切換樣式
           </a>
 
 
 
-          <a href="/template/v_if.html" class="btn btn-block btn-link">
+          <a href="../template/v_if.html" class="btn btn-block btn-link">
             v-if 模板判斷
           </a>
 
 
 
-          <a href="/template/v_for.html" class="btn btn-block btn-link">
+          <a href="../template/v_for.html" class="btn btn-block btn-link">
             v-for 迴圈
           </a>
 
 
 
-          <a href="/template/computed_watch.html" class="btn btn-block btn-link">
+          <a href="../template/computed_watch.html" class="btn btn-block btn-link">
             計算及監聽
           </a>
 
 
 
-          <a href="/template/form.html" class="btn btn-block btn-link">
+          <a href="../template/form.html" class="btn btn-block btn-link">
             表單補充介紹
           </a>
 
 
 
-          <a href="/template/v_on.html" class="btn btn-block btn-link">
+          <a href="../template/v_on.html" class="btn btn-block btn-link">
             v-on 事件綁定
           </a>
 
 
 
-          <a href="/template/homework_sortby.html" class="btn btn-block btn-primary active">
+          <a href="../template/homework_sortby.html" class="btn btn-block btn-link">
             作業練習：表格排序
           </a>
 
@@ -124,39 +124,24 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="click"
-                  @click="clickThis('name')"
-                >
+                <th class="click" @click="clickThis('name')">
                   品名
                   <!-- isReverse 為反轉 className -->
-                  <span class="icon"
-                    :class="{'inverse' : !isReverse}"
-                    v-if="filterType === 'name'"
-                  >
+                  <span class="icon" :class="{'inverse' : !isReverse}" v-if="filterType === 'name'">
                     <i class=" fas fa-angle-up text-success"></i>
                   </span>
                 </th>
-                <th class="click"
-                  @click="clickThis('price')"
-                >
+                <th class="click" @click="clickThis('price')">
                   價格
                   <!-- isReverse 為反轉 className -->
-                  <span class="icon"
-                    :class="{'inverse' : !isReverse}"
-                    v-if="filterType === 'price'"
-                  >
+                  <span class="icon" :class="{'inverse' : !isReverse}" v-if="filterType === 'price'">
                     <i class=" fas fa-angle-up text-success"></i>
                   </span>
                 </th>
-                <th class="click"
-                 @click="clickThis('expiryDate')"
-                >
+                <th class="click" @click="clickThis('expiryDate')">
                   到期日
                   <!-- isReverse 為反轉 className -->
-                  <span class="icon"
-                    :class="{'inverse' : !isReverse}"
-                    v-if="filterType === 'expiryDate'"
-                  >
+                  <span class="icon" :class="{'inverse' : !isReverse}" v-if="filterType === 'expiryDate'">
                     <i class=" fas fa-angle-up text-success"></i>
                   </span>
                 </th>
@@ -186,8 +171,7 @@
           var app = new Vue({
             el: '#app',
             data: {
-              data: [
-                {
+              data: [{
                   name: '巧呼呼蘇打水',
                   price: 30,
                   expiryDate: 90
