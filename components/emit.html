@@ -139,9 +139,9 @@
         <script>
           Vue.component('buttonCounter', {
             template: `<div>
-    <button @click="plusEmit" class="btn btn-outline-primary">增加 {{ counter }} 元</button>
-    <input type="number" class="form-control mt-2" v-model="counter">
-  </div>`,
+              <button @click="plusEmit" class="btn btn-outline-primary">增加 {{ counter }} 元</button>
+              <input type="number" class="form-control mt-2" v-model="counter">
+            </div>`,
             data: function () {
               return {
                 counter: 1
@@ -161,7 +161,11 @@
             },
             methods: {
               plus: function (num) {
-                num ? this.cash = this.cash + num : this.cash += 1;
+                if( typeof(num) === 'number') {
+                  this.cash = this.cash + num;
+                } else {
+                  this.cash = this.cash + 1;
+                }
               }
             }
           });
