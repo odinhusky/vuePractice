@@ -125,20 +125,30 @@
   <no-slot-component></no-slot-component>
 
   <h2>Slot 基礎範例</h2>
+
+  <single-slot-component>
+  </single-slot-component>
+
+  <hr>
+
   <single-slot-component>
     <p>使用這段取代原本的 Slot。</p>
   </single-slot-component>
+
+  <!-- 單一個 Slot 可以直接在想要替換的 template 中，將要插入的位置改成 <slot></slot> 的標籤 -->
 
   <h2>具名插槽</h2>
   <named-slot-component>
   </named-slot-component>
 
   <named-slot-component>
-    <header>替換的 Header</header>
-    <template>替換的 Footer</template>
-    <template>按鈕內容</template>
-    <p>其餘的內容</p>
+    <header slot="head">替換的 Header</header>
+    <template slot="foot">替換的 Footer</template>
+    <template slot="btn">按鈕內容</template>
+    <p slot="rest" class="card-text">其餘的內容</p>
   </named-slot-component>
+
+  <!-- 可以透過在 原件上 使用 slot="XXX" 的屬性，同時 樣板上使用 <slot name="XXX"></slot> 的標籤 來將元件執行時想要帶入的內容給插入到特定位置的 具名插槽-->
 </div>
 
 <script type="text/x-template" id="noSlotComponent">
@@ -153,28 +163,38 @@
 <script type="text/x-template" id="singleSlotComponent">
 <div class="alert alert-warning">
   <h6>我是一個元件</h6>
-  <div>
+  <slot>
     如果沒有內容，則會顯示此段落。
-  </div>
+  </slot>
 </div>
 </script>
 
 <script type="text/x-template" id="namedSlotComponent">
 <div class="card my-3">
   <div class="card-header">
-    <div>這段是預設的文字</div>
+    <div>
+      <slot name="head">這段是預設的文字</slot>
+    </div>
   </div>
   <div class="card-body">
     <slot>
       <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <slot name="rest">
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      </slot>
     </slot>
     <a href="#" class="btn btn-primary">
-      <div>spanGo somewhere</div>
+      <slot name="btn">
+        <div>spanGo somewhere</div>
+      </slot>
     </a>
   </div>
   <div class="card-footer">
-    <div>這是預設的 Footer</div>
+    <div>
+      <slot name="foot">
+        這是預設的 Footer
+      </slot>
+    </div>
   </div>
 </div>
 </script>
