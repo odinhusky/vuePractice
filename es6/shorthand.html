@@ -71,7 +71,7 @@
 
 
 
-          <a href="../es6/shorthand.html" class="btn btn-block btn-link active">
+          <a href="../es6/shorthand.html" class="btn btn-block btn-link btn-primary active">
             縮寫
           </a>
 
@@ -89,7 +89,7 @@
 
 
 
-          <a href="../es6/array_function.html" class="btn btn-block btn-primary">
+          <a href="../es6/array_function.html" class="btn btn-block btn-link">
             陣列方法
           </a>
 
@@ -111,13 +111,20 @@
         <script>
           // #1 物件縮寫
           // 請將以下兩個合併至一個物件上
-          const Frieza = '弗利沙'
-          const GinyuTeam = {
-            Ginyu: '基紐',
-            Jeice: '吉斯',
-            burter: '巴特',
-            // ...
-          }
+          // const Frieza = '弗利沙'
+          // const GinyuTeam = {
+          //   Ginyu: '基紐',
+          //   Jeice: '吉斯',
+          //   burter: '巴特',
+          //   // ...
+          // }
+
+          // const newObj = {
+          //   Frieza,
+          //   GinyuTeam: {...GinyuTeam}
+          // };
+          // console.log('newObj', newObj);
+          
 
 
           // #2 案例
@@ -139,7 +146,10 @@
           // 縮寫以下 showPosture Function
           // const newTeam = {
           //   // ...
-          //   showPosture: function () {
+          //   // showPosture: function () {
+          //   //   console.log('我們是 基紐特戰隊')
+          //   // }
+          //   showPosture () {
           //     console.log('我們是 基紐特戰隊')
           //   }
           // }

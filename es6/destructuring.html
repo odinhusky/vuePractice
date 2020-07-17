@@ -65,7 +65,7 @@
 
 
 
-          <a href="../es6/destructuring.html" class="btn btn-block btn-link active">
+          <a href="../es6/destructuring.html" class="btn btn-block btn-link btn-primary active">
             解構賦值
           </a>
 
@@ -89,7 +89,7 @@
 
 
 
-          <a href="../es6/array_function.html" class="btn btn-block btn-primary">
+          <a href="../es6/array_function.html" class="btn btn-block btn-link">
             陣列方法
           </a>
 
@@ -109,20 +109,28 @@
 
 
         <script>
-          // #1 陣列解構
-          // 1. 請將 family 的值，一一賦予到變數上
-          // 2. 請將後面三個名字賦予到另一個陣列上
+          // // #1 陣列解構
+          // // 1. 請將 family 的值，一一賦予到變數上
+          // // 2. 請將後面三個名字賦予到另一個陣列上
           // let family = ['小明', '杰倫', '阿姨', '老媽', '老爸'];
-          // let ming = family[0];
-          // let jay = family[1];
-          // let auntie = family[2];
+          // // let ming = family[0];
+          // // let jay = family[1];
+          // // let auntie = family[2];
+          // let [ming, jay, auntie, mom, dad] = ['小明', '杰倫', '阿姨', '老媽', '老爸'];
+          // console.log(ming, jay, auntie, mom, dad);
 
-          // #2 請交換以下兩個變數
+          // // #2 請交換以下兩個變數
           // let Goku = '悟空';
           // let Ginyu = '基紐';
+          // [Goku, Ginyu] = [Ginyu, Goku]
+          // console.log(Goku, Ginyu);
+          
 
-          // #3 請拆解以下字元到單一變數上
+          // // #3 請拆解以下字元到單一變數上
           // let str = '基紐特攻隊';
+          // let [a, b, c, d, e] = str;
+          // console.log(a, b, c, d, e);
+          
 
           // #4 物件解構
           // 請取出物件內的兩個值到單一變數上
@@ -130,6 +138,9 @@
           //   ming: '小明',
           //   jay: '杰倫',
           // };
+          // let {...odin} = family;
+          // console.log(odin);
+          
 
           // #5
           // 取出其中一個值，並附在新的變數名稱上
@@ -139,6 +150,11 @@
           //   burter: '巴特',
           //   // ...
           // }
+          
+          // // { 物件屬性名稱: 重新賦予的變數名稱 } = 哪個物件
+          // let { Ginyu: Goku } = GinyuTeam;
+          // console.log(Goku);
+          
 
 
           // #6 延伸問題

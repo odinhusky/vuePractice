@@ -114,18 +114,35 @@
         <script type="text/x-template" id="row-component">
           <tr>
             <td>{{ item.name }}</td>
-            <td>{{ item.cash }}</td>
-            <td>{{ item.icash }}</td>
+            <td>{{ item.cash | currency | dollarSign }}</td>
+            <td>{{ item.icash | currency | dollarSign }}</td>
           </tr>
         </script>
 
         <script>
+          // 全域掛載
+          Vue.filter('currency', function (n) {
+            return n.toFixed(2).replace(/./g, function (c, i, a) {
+              return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+            });
+          })
           var child = {
             props: ['item'],
             template: '#row-component',
             data: function () {
               return {
                 data: {}
+              }
+            },
+            // 局部註冊
+            filters: {
+              currency: function (n) {
+                return n.toFixed(2).replace(/./g, function(c, i , a) {
+                  return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+                });
+              },
+              dollarSign: function (n) {
+                return `$${n}`
               }
             },
             mounted: function () {
