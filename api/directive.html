@@ -96,59 +96,92 @@
 </div>
 
 <div id="app">
-  <input type="email" v-model="email" v-focus v-validator="{ className: 'form-control' }">
+  <input type="email" v-model="email" v-focus="{aaa : 'bbb'}" v-vali-email="{className : 'form-control'}">
 </div>
 
 <script>
 // 官方文件 https://cn.vuejs.org/v2/guide/custom-directive.html
 Vue.directive('focus', {
-  inserted: function(el) {
+  inserted: function(el, binding, vnode) {
     el.focus()
+    console.log('focus bind', el, binding, vnode);
   }
-})
+});
 
-Vue.directive('validator', {
-  update: function(el, binding, vnode) {
-    console.log('update', el.value, el.className, vnode);
+// 自定義directive 
+Vue.directive('vali-email', {
+  bind: function (el, binding, vnode) {
+    console.log('vali-email bind', el, binding, vnode);
 
-    // 尋找當前的 model 名稱
-    var currentModel = vnode.data.directives.find(function(o) {
-        return o.name === 'model';
-    }).expression;
-    
-    // 從當前 Model 取值
-    var value = vnode.context[currentModel];
+    // 加入 css 設定
+    el.className = binding.value.className;
 
-    // Email validate
-    var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!re.test(value)) {
-      el.className = 'form-control is-invalid'
-    } else {
-      el.className = 'form-control is-valid'
-    }
+    // 找到v-model
+    let vModelName = vnode.data.directives.find((item) => item.name === 'model').expression;
+    console.log('vModelName', vModelName);
+
+    // 去vnode的context中找到值
+    let value = vnode.context[vModelName];
+    console.log('vModelNameVlaue', value);
   },
-  bind: function(el, binding, vnode) {
-    console.log('bind', el, binding, vnode);
-    el.className = binding.value.className
-
-    var currentModel = vnode.data.directives.find(function(o) {
-        return o.name === 'model';
-    }).expression;
-    var value = vnode.context[currentModel];
-
-    var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (!re.test(value)) {
-      el.className = 'form-control is-invalid'
+  update: function (el, binding, vnode) {
+    // 取得input的value
+    let inputValue = el.value;
+    let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    console.log(re.test(inputValue));
+    
+    // 執行驗證並改變 UI 外觀
+    if (!re.test(inputValue)) {
+      el.className = 'form-control is-invalid';
     } else {
-      el.className = 'form-control is-valid'
+      el.className = 'form-control is-valid';
     }
   }
 });
 
+// 老師的解答
+// Vue.directive('validator', {
+//   update: function(el, binding, vnode) {
+//     console.log('update', el.value, el.className, vnode);
+
+//     // 尋找當前的 model 名稱
+//     var currentModel = vnode.data.directives.find(function(o) {
+//         return o.name === 'model';
+//     }).expression;
+    
+//     // 從當前 Model 取值
+//     var value = vnode.context[currentModel];
+
+//     // Email validate
+//     var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+//     if (!re.test(value)) {
+//       el.className = 'form-control is-invalid'
+//     } else {
+//       el.className = 'form-control is-valid'
+//     }
+//   },
+//   bind: function(el, binding, vnode) {
+//     console.log('bind', el, binding, vnode);
+//     el.className = binding.value.className
+
+//     var currentModel = vnode.data.directives.find(function(o) {
+//         return o.name === 'model';
+//     }).expression;
+//     var value = vnode.context[currentModel];
+
+//     var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+//     if (!re.test(value)) {
+//       el.className = 'form-control is-invalid'
+//     } else {
+//       el.className = 'form-control is-valid'
+//     }
+//   }
+// });
+
 var app = new Vue({
   el: '#app',
   data: {
-    email: 'aaa',
+    email: 'ddd@gmail.com',
   },
   mounted: function() {
     console.log('Vue init:', this)

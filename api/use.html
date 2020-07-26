@@ -103,12 +103,23 @@
         </div>
 
         <div id="app">
-
+          <div>
+            <b-button v-b-modal.modal-1>Show modal</b-button>
+          
+            <b-modal id="modal-1" title="BootstrapVue">
+              <p class="my-4">Hello from modal!</p>
+            </b-modal>
+          </div>
         </div>
 
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+        
+        <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
 
 
         <script>
+          
           // CLI 版本請加入以下套用 BootstrapVue
           // import BootstrapVue from 'bootstrap-vue'
           // Vue.use(BootstrapVue);
